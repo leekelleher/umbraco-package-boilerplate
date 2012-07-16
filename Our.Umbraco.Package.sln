@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C0A8BDDE-A89F-4341-8912-A7C05E5CC25F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Package", "Build Package", "{0F945291-F264-44AF-9C6A-B1BB0B9E785E}"
+	ProjectSection(SolutionItems) = preProject
+		Build\package.build.cmd = Build\package.build.cmd
+		Build\package.build.xml = Build\package.build.xml
+		Build\package.xml = Build\package.xml
+		Build\readme.txt = Build\readme.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Umbraco Assemblies", "Umbraco Assemblies", "{04F1C33F-EF3D-4F85-90B6-D258F06752D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F945291-F264-44AF-9C6A-B1BB0B9E785E} = {C0A8BDDE-A89F-4341-8912-A7C05E5CC25F}
+		{04F1C33F-EF3D-4F85-90B6-D258F06752D7} = {C0A8BDDE-A89F-4341-8912-A7C05E5CC25F}
+	EndGlobalSection
+EndGlobal
