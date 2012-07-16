@@ -3,7 +3,7 @@
 
 	<!-- IMPORTS -->
 	<PropertyGroup>
-		<MSBuildCustomTasksPath>$(MSBuildProjectDirectory)\..\Tools\MSBuildCustomTasks</MSBuildCustomTasksPath>
+		<MSBuildCustomTasksPath>$(MSBuildProjectDirectory)\..\Tools\MSBuildTasks</MSBuildCustomTasksPath>
 		<MSBuildCommunityTasksPath>$(MSBuildCustomTasksPath)</MSBuildCommunityTasksPath>
 		<MSBuildUmbracoTasksPath>$(MSBuildCustomTasksPath)</MSBuildUmbracoTasksPath>
 	</PropertyGroup>
@@ -51,9 +51,14 @@
 		<ItemGroup>
 			<ManifestFiles Include="$(BuildDir)\**\*" Exclude="$(BuildDir)\package.xml" />
 		</ItemGroup>
+		<ReadLinesFromFile File="$(PackageDir)\readme.txt">
+			<Output TaskParameter="Lines" ItemName="Readme" />
+		</ReadLinesFromFile>
 		<ManifestUpdate ManifestFile="$(BuildDir)\package.xml"
 			WorkingDirectory="$(BuildDir)"
+			MinimumRequiredUmbracoVersion="4.5.2"
 			PackageVersion="$(PackageVersion)"
+			Readme="@(Readme->'%(Identity)', '%0a%0d')"
 			Files="@(ManifestFiles)" />
 	</Target>
 
@@ -66,6 +71,7 @@
 		   WorkingDirectory="$(BuildDir)"
 		   OutputDirectory="$(PackageDir)"
 		   Files="@(PackageFiles)" />
+		<RemoveDir Directories="$(BuildDir)" Condition="Exists('$(BuildDir)')" />
 	</Target>
 
 </Project>
