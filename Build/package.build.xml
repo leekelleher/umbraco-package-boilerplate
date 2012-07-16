@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Package" ToolsVersion="4.0">
+
+	<!-- IMPORTS -->
+	<PropertyGroup>
+		<MSBuildCustomTasksPath>$(MSBuildProjectDirectory)\..\Tools\MSBuildCustomTasks</MSBuildCustomTasksPath>
+		<MSBuildCommunityTasksPath>$(MSBuildCustomTasksPath)</MSBuildCommunityTasksPath>
+		<MSBuildUmbracoTasksPath>$(MSBuildCustomTasksPath)</MSBuildUmbracoTasksPath>
+	</PropertyGroup>
+
+	<Import Project="$(MSBuildCustomTasksPath)\MSBuild.Community.Tasks.Targets" />
+	<Import Project="$(MSBuildCustomTasksPath)\MSBuild.Umbraco.Tasks.Targets" />
+
+	<!-- PROPERTIES -->
+	<PropertyGroup>
+		<PackageVersion>0.1.0</PackageVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<RootDir>$(MSBuildProjectDirectory)\..</RootDir>
+		<BuildDir>$(MSBuildProjectDirectory)\Temp</BuildDir>
+		<PackageDir>$(MSBuildProjectDirectory)</PackageDir>
+		<ProjectDir>$(RootDir)\Src\Our.Umbraco.Package</ProjectDir>
+	</PropertyGroup>
+
+	<!-- TARGETS -->
+
+	<!-- CLEAN -->
+	<Target Name="Clean">
+		<RemoveDir Directories="$(BuildDir)" Condition="Exists('$(BuildDir)')" />
+		<MakeDir Directories="$(BuildDir)" />
+	</Target>
+
+	<!-- COMPILE -->
+	<Target Name="Compile" DependsOnTargets="Clean">
+		<MSBuild Projects="$(RootDir)\Our.Umbraco.Package.sln" Properties="Configuration=Release" />
+	</Target>
+
+	<!-- PREPAIRE FILES -->
+	<Target Name="PrepairFiles" DependsOnTargets="Compile">
+		<ItemGroup>
+			<BinFiles Include="$(ProjectDir)\Bin\Release\*.dll" />
+			<PackageFile Include="$(PackageDir)\package.xml" />
+		</ItemGroup>
+		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\bin" />
+		<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildDir)" />
+	</Target>
+
+	<!-- MANIFEST -->
+	<Target Name="Manifest" DependsOnTargets="PrepairFiles">
+		<ItemGroup>
+			<ManifestFiles Include="$(BuildDir)\**\*" Exclude="$(BuildDir)\package.xml" />
+		</ItemGroup>
+		<ManifestUpdate ManifestFile="$(BuildDir)\package.xml"
+			WorkingDirectory="$(BuildDir)"
+			PackageVersion="$(PackageVersion)"
+			Files="@(ManifestFiles)" />
+	</Target>
+
+	<!-- PACKAGE -->
+	<Target Name="Package" DependsOnTargets="Manifest">
+		<ItemGroup>
+			<PackageFiles Include="$(BuildDir)\**\*.*" />
+		</ItemGroup>
+		<Package ManifestFile="$(BuildDir)\package.xml"
+		   WorkingDirectory="$(BuildDir)"
+		   OutputDirectory="$(PackageDir)"
+		   Files="@(PackageFiles)" />
+	</Target>
+
+</Project>

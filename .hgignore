@@ -1,10 +1,9 @@
 syntax: glob
 _ReSharper.*
-Build/*
+Build/Temp*
 */bin/*
 */obj/*
 *.csproj.user
 *.suo
 *.user
-Src/Umbraco/*
-Src/UmBristol.PageStateIcons/UmBristol.PageStateIcons.Publish.xml
+
