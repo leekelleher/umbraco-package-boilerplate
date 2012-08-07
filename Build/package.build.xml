@@ -13,7 +13,10 @@
 
 	<!-- PROPERTIES -->
 	<PropertyGroup>
-		<PackageVersion>0.1.0</PackageVersion>
+		<VersionMajor>0</VersionMajor>
+		<VersionMinor>1</VersionMinor>
+		<VersionPatch>0</VersionPatch>
+		<VersionSuffix>-alpha</VersionSuffix>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -31,8 +34,23 @@
 		<MakeDir Directories="$(BuildDir)" />
 	</Target>
 
+	<!-- UPDATE ASSEMBLEY VERSION -->
+	<Target Name="UpdateAssemblyInfo" DependsOnTargets="Clean">
+		<Version VersionFile="$(ProjectDir)\Properties\BuildVersion.txt" Major="0" Minor="1" BuildType="Automatic" StartDate="06/08/2012" RevisionType="BuildIncrement">
+			<Output TaskParameter="Major" PropertyName="Major" />
+			<Output TaskParameter="Minor" PropertyName="Minor" />
+			<Output TaskParameter="Build" PropertyName="Build" />
+			<Output TaskParameter="Revision" PropertyName="Revision" />
+		</Version>
+		<AssemblyInfo CodeLanguage="CS"
+			OutputFile="$(ProjectDir)\Properties\VersionInfo.cs"
+			AssemblyVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)"
+			AssemblyFileVersion="$(Major).$(Minor).$(Build).$(Revision)"
+			AssemblyInformationalVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"/>
+	</Target>
+
 	<!-- COMPILE -->
-	<Target Name="Compile" DependsOnTargets="Clean">
+	<Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
 		<MSBuild Projects="$(RootDir)\Our.Umbraco.Package.sln" Properties="Configuration=Release" />
 	</Target>
 
@@ -57,7 +75,7 @@
 		<ManifestUpdate ManifestFile="$(BuildDir)\package.xml"
 			WorkingDirectory="$(BuildDir)"
 			MinimumRequiredUmbracoVersion="4.5.2"
-			PackageVersion="$(PackageVersion)"
+			PackageVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"
 			Readme="@(Readme->'%(Identity)', '%0a%0d')"
 			Files="@(ManifestFiles)" />
 	</Target>
