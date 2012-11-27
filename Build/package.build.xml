@@ -17,6 +17,7 @@
 		<VersionMinor>1</VersionMinor>
 		<VersionPatch>0</VersionPatch>
 		<VersionSuffix>-alpha</VersionSuffix>
+		<UmbracoVersion>4.5.2</UmbracoVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -67,14 +68,11 @@
 		<ItemGroup>
 			<ManifestFiles Include="$(BuildDir)\**\*" Exclude="$(BuildDir)\package.xml" />
 		</ItemGroup>
-		<ReadLinesFromFile File="$(PackageDir)\readme.txt">
-			<Output TaskParameter="Lines" ItemName="Readme" />
-		</ReadLinesFromFile>
 		<ManifestUpdate ManifestFile="$(BuildDir)\package.xml"
 			WorkingDirectory="$(BuildDir)"
-			MinimumRequiredUmbracoVersion="4.5.2"
+			MinimumRequiredUmbracoVersion="$(UmbracoVersion)"
 			PackageVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"
-			Readme="@(Readme->'%(Identity)', '%0a%0d')"
+			Readme="$([System.IO.File]::ReadAllText(readme.txt))"
 			Files="@(ManifestFiles)" />
 	</Target>
 
