@@ -3,7 +3,7 @@
 
 	<!-- IMPORTS -->
 	<PropertyGroup>
-		<MSBuildCustomTasksPath>$(MSBuildProjectDirectory)\..\Tools\MSBuildTasks</MSBuildCustomTasksPath>
+		<MSBuildCustomTasksPath>$(MSBuildProjectDirectory)\tools\MSBuildTasks</MSBuildCustomTasksPath>
 		<MSBuildCommunityTasksPath>$(MSBuildCustomTasksPath)</MSBuildCommunityTasksPath>
 		<MSBuildUmbracoTasksPath>$(MSBuildCustomTasksPath)</MSBuildUmbracoTasksPath>
 	</PropertyGroup>
@@ -21,10 +21,9 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<RootDir>$(MSBuildProjectDirectory)\..</RootDir>
-		<BuildDir>$(MSBuildProjectDirectory)\Temp</BuildDir>
-		<PackageDir>$(MSBuildProjectDirectory)</PackageDir>
-		<ProjectDir>$(RootDir)\Src\Our.Umbraco.Package</ProjectDir>
+		<RootDir>$(MSBuildProjectDirectory)</RootDir>
+		<BuildDir>$(RootDir)\Build</BuildDir>
+		<ProjectDir>$(RootDir)\src\Our.Umbraco.Package</ProjectDir>
 	</PropertyGroup>
 
 	<!-- TARGETS -->
@@ -56,8 +55,8 @@
 	<!-- PREPARE FILES -->
 	<Target Name="PrepairFiles" DependsOnTargets="Compile">
 		<ItemGroup>
-			<BinFiles Include="$(ProjectDir)\Bin\Release\*.dll" />
-			<PackageFile Include="$(PackageDir)\package.xml" />
+			<BinFiles Include="$(ProjectDir)\bin\Release\*.dll" />
+			<PackageFile Include="$(RootDir)\package.xml" />
 		</ItemGroup>
 		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\bin" />
 		<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildDir)" />
@@ -72,7 +71,7 @@
 			WorkingDirectory="$(BuildDir)"
 			MinimumRequiredUmbracoVersion="$(UmbracoVersion)"
 			PackageVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"
-			Readme="$([System.IO.File]::ReadAllText(readme.txt))"
+			Readme="$([System.IO.File]::ReadAllText(package.txt))"
 			Files="@(ManifestFiles)" />
 	</Target>
 
@@ -83,7 +82,7 @@
 		</ItemGroup>
 		<Package ManifestFile="$(BuildDir)\package.xml"
 			WorkingDirectory="$(BuildDir)"
-			OutputDirectory="$(PackageDir)"
+			OutputDirectory="$(RootDir)"
 			Files="@(PackageFiles)" />
 		<RemoveDir Directories="$(BuildDir)" Condition="Exists('$(BuildDir)')" />
 	</Target>
