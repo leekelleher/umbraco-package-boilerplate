@@ -22,7 +22,7 @@
 
 	<PropertyGroup>
 		<RootDir>$(MSBuildProjectDirectory)</RootDir>
-		<BuildDir>$(RootDir)\Build</BuildDir>
+		<BuildDir>$(RootDir)\build</BuildDir>
 		<ProjectDir>$(RootDir)\src\Our.Umbraco.Package</ProjectDir>
 	</PropertyGroup>
 

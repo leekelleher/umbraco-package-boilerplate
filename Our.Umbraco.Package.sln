@@ -1,22 +1,32 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C0A8BDDE-A89F-4341-8912-A7C05E5CC25F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Package", "Build Package", "{0F945291-F264-44AF-9C6A-B1BB0B9E785E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{0F945291-F264-44AF-9C6A-B1BB0B9E785E}"
 	ProjectSection(SolutionItems) = preProject
-		Build\package.build.cmd = Build\package.build.cmd
-		Build\package.build.xml = Build\package.build.xml
-		Build\package.xml = Build\package.xml
-		Build\readme.txt = Build\readme.txt
+		Build.cmd = Build.cmd
+		Build.proj = Build.proj
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Umbraco Assemblies", "Umbraco Assemblies", "{04F1C33F-EF3D-4F85-90B6-D258F06752D7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Package", "Package", "{04F1C33F-EF3D-4F85-90B6-D258F06752D7}"
+	ProjectSection(SolutionItems) = preProject
+		package.txt = package.txt
+		package.xml = package.xml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.Package", "src\Our.Umbraco.Package\Our.Umbraco.Package.csproj", "{E588D5C0-D4C4-4CD2-9416-3D8C479CBA06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E588D5C0-D4C4-4CD2-9416-3D8C479CBA06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E588D5C0-D4C4-4CD2-9416-3D8C479CBA06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E588D5C0-D4C4-4CD2-9416-3D8C479CBA06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E588D5C0-D4C4-4CD2-9416-3D8C479CBA06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

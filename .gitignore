@@ -1,6 +1,6 @@
 _ReSharper.*
 [Bb]in
-Build/Temp
+[Bb]uild
 [Oo]bj
 *.suo
 *.user
