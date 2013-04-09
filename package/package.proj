@@ -3,7 +3,8 @@
 
 	<!-- IMPORTS -->
 	<PropertyGroup>
-		<MSBuildCustomTasksPath>$(MSBuildProjectDirectory)\tools\MSBuildTasks</MSBuildCustomTasksPath>
+		<RootDir>$(MSBuildProjectDirectory)\..</RootDir>
+		<MSBuildCustomTasksPath>$(RootDir)\tools\MSBuildTasks</MSBuildCustomTasksPath>
 		<MSBuildCommunityTasksPath>$(MSBuildCustomTasksPath)</MSBuildCommunityTasksPath>
 		<MSBuildUmbracoTasksPath>$(MSBuildCustomTasksPath)</MSBuildUmbracoTasksPath>
 	</PropertyGroup>
@@ -21,8 +22,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<RootDir>$(MSBuildProjectDirectory)</RootDir>
-		<BuildDir>$(RootDir)\build</BuildDir>
+		<BuildDir>$(MSBuildProjectDirectory)\_build</BuildDir>
 		<ProjectDir>$(RootDir)\src\Our.Umbraco.Package</ProjectDir>
 	</PropertyGroup>
 
@@ -49,21 +49,22 @@
 
 	<!-- COMPILE -->
 	<Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
-		<MSBuild Projects="$(RootDir)\Our.Umbraco.Package.sln" Properties="Configuration=Release" />
+		<MSBuild Projects="$(RootDir)\src\Our.Umbraco.Package.sln" Properties="Configuration=Release" />
 	</Target>
 
 	<!-- PREPARE FILES -->
-	<Target Name="PrepairFiles" DependsOnTargets="Compile">
+	<Target Name="PrepareFiles" DependsOnTargets="Compile">
 		<ItemGroup>
 			<BinFiles Include="$(ProjectDir)\bin\Release\*.dll" />
-			<PackageFile Include="$(RootDir)\package.xml" />
+			<PackageFile Include="$(MSBuildProjectDirectory)\package.xml" />
 		</ItemGroup>
+		<TimestampOffset Files="@(BinFiles)" Offset="-11" />
 		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\bin" />
 		<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildDir)" />
 	</Target>
 
 	<!-- MANIFEST -->
-	<Target Name="Manifest" DependsOnTargets="PrepairFiles">
+	<Target Name="Manifest" DependsOnTargets="PrepareFiles">
 		<ItemGroup>
 			<ManifestFiles Include="$(BuildDir)\**\*" Exclude="$(BuildDir)\package.xml" />
 		</ItemGroup>

@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Package", "Package", "{04F1
 		package.xml = package.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.Package", "src\Our.Umbraco.Package\Our.Umbraco.Package.csproj", "{E588D5C0-D4C4-4CD2-9416-3D8C479CBA06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.Package", "Our.Umbraco.Package\Our.Umbraco.Package.csproj", "{E588D5C0-D4C4-4CD2-9416-3D8C479CBA06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
