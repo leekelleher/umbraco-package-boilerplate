@@ -12,6 +12,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Package", "Package", "{04F1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.Package", "Our.Umbraco.Package\Our.Umbraco.Package.csproj", "{E588D5C0-D4C4-4CD2-9416-3D8C479CBA06}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8385D108-CB2D-4DFE-A503-D49CCA8C1D90}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,5 +35,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{04F1C33F-EF3D-4F85-90B6-D258F06752D7} = {C0A8BDDE-A89F-4341-8912-A7C05E5CC25F}
+		{8385D108-CB2D-4DFE-A503-D49CCA8C1D90} = {C0A8BDDE-A89F-4341-8912-A7C05E5CC25F}
 	EndGlobalSection
 EndGlobal
