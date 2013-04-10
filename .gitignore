@@ -8,3 +8,5 @@ _ReSharper.*
 *.orig
 Thumbs.db
 .DS_Store
+
+Package_Name_*.zip
