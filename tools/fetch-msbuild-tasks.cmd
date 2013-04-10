@@ -1,8 +1,5 @@
 IF NOT EXIST tools\MSBuildTasks\NUL (GOTO FETCH) ELSE GOTO EXIST
 
-:EXIST
-ECHO MSBuildTasks already exist
-
 :FETCH
 ECHO Fetching MSBuildTasks via NuGet
 
@@ -21,3 +18,9 @@ XCOPY _temp\SharpZipLib\lib\20\ICSharpCode.SharpZipLib.dll MSBuildTasks /i /y /q
 :: Tidy up
 RMDIR _temp /s /q
 CD ..
+GOTO END
+
+:EXIST
+ECHO MSBuildTasks already exist
+
+:END
