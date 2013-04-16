@@ -14,7 +14,9 @@ This boilerplate is the product of community knowledge, good practices and itera
 
 ## Usage
 
-The best way to use this boilerplate is via the [Umbraco Package Boilerplate Bootstrapper](https://github.com/leekelleher/umbraco-package-boilerplate-bootstrapper). This is a command-line interface which will auto-scaffold a new Umbraco package structure, (from this boilerplate).
+The best way to use this boilerplate is via the [Umbraco Package Boilerplate Bootstrapper](https://github.com/leekelleher/umbraco-package-boilerplate-bootstrapper). This is a command-line interface which will auto-scaffold a new Umbraco package structure (development tree).
+
+If you do not wish to use the bootstrapper command-line, then you can always download a **`zip`** archive from this repository: [Link to direct download](https://github.com/leekelleher/umbraco-package-boilerplate/archive/master.zip).
 
 ## Links
 
