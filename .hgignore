@@ -7,4 +7,6 @@ _ReSharper.*
 *.suo
 *.user
 
+src/packages/*/**
+
 Package_Name_*.zip
