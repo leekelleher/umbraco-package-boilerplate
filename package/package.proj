@@ -19,11 +19,13 @@
 		<VersionPatch>0</VersionPatch>
 		<VersionSuffix>-alpha</VersionSuffix>
 		<UmbracoVersion>4.5.2</UmbracoVersion>
+		<ProjectName>Our.Umbraco.Package</ProjectName>
+		<BuildConfig>Release</BuildConfig>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<BuildDir>$(MSBuildProjectDirectory)\_build</BuildDir>
-		<ProjectDir>$(RootDir)\src\Our.Umbraco.Package</ProjectDir>
+		<ProjectDir>$(RootDir)\src\$(ProjectName)</ProjectDir>
 	</PropertyGroup>
 
 	<!-- TARGETS -->
@@ -49,7 +51,7 @@
 
 	<!-- COMPILE -->
 	<Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
-		<MSBuild Projects="$(RootDir)\src\Our.Umbraco.Package.sln" Properties="Configuration=Release" />
+		<MSBuild Projects="$(ProjectDir)\$(ProjectName).csproj" Properties="Configuration=$(BuildConfig)" />
 	</Target>
 
 	<!-- PREPARE FILES -->
