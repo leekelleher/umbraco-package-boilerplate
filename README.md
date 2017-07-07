@@ -1,5 +1,7 @@
 # Umbraco Package Boilerplate
 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 This boilerplate is the product of community knowledge, good practices and iterative development. It does not impose a specific development philosophy or framework, so you're free to architect your code in the way that you want.
 
 ## Benefits
